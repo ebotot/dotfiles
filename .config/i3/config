@@ -1,7 +1,7 @@
 # i3 config file (v4)
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -34,7 +34,7 @@ set $right l
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+p exec i3-sensible-terminal
+bindsym $mod+semicolon exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -153,7 +153,8 @@ mode "resize" {
 	bindsym Up          resize shrink height 10 px or 10 ppt 
 	bindsym Right       resize grow width 10 px or 10 ppt 
 	# back to normal: Enter or Escape bindsym Return mode "default"
-        bindsym Escape mode "default"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -177,14 +178,9 @@ bar {
 		urgent_workspace 	$red	$red	$white
 	}
 }
-##Startup Programs 
-exec --no-startup-id compton -b &
-exec --no-startup-id sh ~/.fehbg &
-exec --no-startup-id xss-lock -- i3lock -n -c 002b36 &
-exec --no-startup-id urxvtd -q -o -f &
 
 #quake terminal
-exec --no-startup-id urxvt -name quaketerm -g 178x25 -bg rgba:0000/0000/0000/bb00
+exec --no-startup-id urxvt -name quaketerm -g 178x28 -bg rgba:0000/0000/0000/bb00
 for_window [instance="quaketerm"] floating enable, move position 0 px 24 px, move scratchpad
 bindsym $mod+Return [instance="quaketerm"] scratchpad show
 bindsym $mod+Shift+Return [instance="quaketerm"] move position 0 px 24 px
@@ -200,8 +196,8 @@ mode "$mode_system" {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-bindsym $mod+Shift+e mode "$mode_system"
-bindsym $mod+x exec --no-startup-id i3lock -c 002b36
+bindsym Mod4+Shift+e mode "$mode_system"
+bindsym Mod4+e exec --no-startup-id lock
 
 #Pulseaudio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
@@ -215,20 +211,22 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioStop exec --no-startup-id playerctl stop
 
-bindsym Mod1+Down exec --no-startup-id playerctl play-pause
-bindsym Mod1+Right exec --no-startup-id playerctl next
-bindsym Mod1+Left exec --no-startup-id playerctl previous
-bindsym Mod1+Up exec --no-startup-id playerctl stop
+bindsym Mod4+Down exec --no-startup-id playerctl play-pause
+bindsym Mod4+Right exec --no-startup-id playerctl next
+bindsym Mod4+Left exec --no-startup-id playerctl previous
+bindsym Mod4+Up exec --no-startup-id playerctl stop
 
 #Screen brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 1
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 1
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 #Border style
 new_window none
 
 #floaters
 for_window [title="Volume Control"] floating enable
+for_window [class="Steam" title="Friends"] floating enable
+for_window [class="Battle.net.exe" title="Friends"] floating enable
 
 #workspace movment
 bindsym $mod+z workspace back_and_forth
@@ -243,7 +241,15 @@ mode "$mode_display" {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-bindsym $mod+Shift+d mode "$mode_display"
+bindsym Mod4+d mode "$mode_display"
+
+#screenshots
+bindsym --release Print exec --no-startup-id maim ~/Pictures/Screen_$(date +%F-%T).png
+bindsym --release $mod+p exec --no-startup-id maim -i$(xdotool getactivewindow) ~/Pictures/Screen_$(date +%F-%T).png
+bindsym --release $mod+Shift+p exec --no-startup-id maim -s ~/Pictures/Screen_$(date +%F-%T).png
 
 #other
+bindsym --release $mod+Shift+q exec --no-startup-id xkill
+
+#focus
 focus_follows_mouse no
