@@ -54,6 +54,9 @@ Xft.rgba: rgb
 URxvt.font: xft:Inconsolata:size=12
 URxvt.scrollBar: false
 URxvt.depth: 32
+URxvt.colorIT:      #87af5f
+URxvt.colorBD:      #d7d7d7
+URxvt.colorUL:      #87afd7
 
 !urxvt perl 
 URxvt.perl-ext-common: default,keyboard-select,url-select
