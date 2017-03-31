@@ -73,7 +73,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing windowmanager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 15
+    transparency = 0
     
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -175,20 +175,19 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#073642"
-    foreground = "#657b83"
+    background = "#002b36"
+    foreground = "#fdf6e3"
     timeout = 10
 
 [urgency_normal]
-    background = "#586e75"
-    foreground = "#93a1a1"
+    background = "#268bd2"
+    foreground = "#fdf6e3"
     timeout = 10
 
 [urgency_critical]
     background = "#dc322f"
-    foreground = "#eee8d5"
+    foreground = "#fdf6e3"
     timeout = 0
-
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
