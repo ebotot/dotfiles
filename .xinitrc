@@ -64,6 +64,12 @@ else
     xrandr --output $internal --auto --primary --set "scaling mode" "Full aspect"
 fi
 
+udiskie &
+compton -b &
+sh ~/.fehbg &
+xss-lock -- lock &
+urxvtd -q -o -f &
+
 #window manager chooser
 session=${1:-i3}
 
