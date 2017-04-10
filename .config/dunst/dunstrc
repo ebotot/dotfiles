@@ -1,5 +1,5 @@
 [global]
-    font = Noto Sans 10
+    font = Source Sans Pro 10
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -175,18 +175,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#002b36"
-    foreground = "#fdf6e3"
+    background = "#99cc99"	
+    foreground = "#e8e6df"
     timeout = 10
 
 [urgency_normal]
-    background = "#268bd2"
-    foreground = "#fdf6e3"
+    background = "#6699cc"
+    foreground = "#e8e6df"
     timeout = 10
 
 [urgency_critical]
-    background = "#dc322f"
-    foreground = "#fdf6e3"
+    background = "#f2777a"
+    foreground = "#e8e6df"
     timeout = 0
 
 # Every section that isn't one of the above is interpreted as a rules to
