@@ -9,19 +9,7 @@ set $mod Mod1
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-font pango:Noto Sans 10
-
-# colors
-set_from_resource $black color0 #000000
-set_from_resource $red color1 #000000
-set_from_resource $green color2 #000000
-set_from_resource $yellow color3 #000000
-set_from_resource $blue color4 #000000
-set_from_resource $violet color5 #000000
-set_from_resource $cyan color6 #000000
-set_from_resource $grey color7 #000000
-set_from_resource $dgrey color8 #000000
-set_from_resource $white color15 #000000
+font pango:Source Sans Pro 11
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
@@ -44,7 +32,7 @@ bindsym $mod+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -fn "Noto Sans-12" -nb "$black" -nf "$grey" -sb "$blue" -sf "$white"'
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -fn "Source Sans Pro-13" -nb "$base00" -nf "$base04" -sb "$base0D" -sf "$base07"'
 
 # change focus
 bindsym $mod+$left focus left
@@ -169,35 +157,69 @@ bar {
 	tray_output 	primary
 
 	colors {
-		background $black
-		statusline $grey
-		separator $black
+		background $base00
+		separator  $base01
+		statusline $base04
 
-		focused_workspace 	$blue	$blue	$white
-		inactive_workspace 	$black	$black	$grey
-		urgent_workspace 	$red	$red	$white
-	}
+		# State             Border  BG      Text
+		focused_workspace   $base0D $base0D $base07
+		active_workspace    $base05 $base03 $base07
+		inactive_workspace  $base01 $base01 $base05
+		urgent_workspace    $base08 $base08 $base07
+		binding_mode        $base08 $base08 $base07
+	}	
 }
 
+## Base16 Eighties
+# Author: Chris Kempson (http://chriskempson.com)
+#
+# You can use these variables anywhere in the i3 configuration file.
+
+set $base00 #2d2d2d
+set $base01 #393939
+set $base02 #515151
+set $base03 #747369
+set $base04 #a09f93
+set $base05 #d3d0c8
+set $base06 #e8e6df
+set $base07 #f2f0ec
+set $base08 #f2777a
+set $base09 #f99157
+set $base0A #ffcc66
+set $base0B #99cc99
+set $base0C #66cccc
+set $base0D #6699cc
+set $base0E #cc99cc
+set $base0F #d27b53
+
+# Basic color configuration using the Base16 variables for windows and borders.
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $base05 $base0D $base00 $base0D $base0D
+client.focused_inactive $base01 $base01 $base05 $base03 $base01
+client.unfocused        $base01 $base00 $base05 $base01 $base01
+client.urgent           $base08 $base08 $base00 $base08 $base08
+client.placeholder      $base00 $base00 $base05 $base00 $base00
+client.background       $base07
+  
 #quake terminal
-exec --no-startup-id urxvt -name quaketerm -g 178x28 -bg rgba:0000/0000/0000/bb00
-for_window [instance="quaketerm"] floating enable, move position 0 px 24 px, move scratchpad
-bindsym $mod+Return [instance="quaketerm"] scratchpad show
-bindsym $mod+Shift+Return [instance="quaketerm"] move position 0 px 24 px
+exec --no-startup-id urxvt -name quaketerm -g 178x28 
+#-bg rgba:0000/0000/0000/bb00
+for_window [instance="quake"] floating enable, move position 0 px 24 px, move scratchpad
+bindsym $mod+Return [instance="quake"] scratchpad show
+bindsym $mod+Shift+Return [instance="quake"] move position 0 px 24 px
 
 #Power options
-set $mode_system (1) Logout, (2) Suspend, (3) Hibernate, (4) Reboot, (5) Shutdown
+set $mode_system (1) Logout, (2) Suspend, (3) Reboot, (4) Shutdown
 mode "$mode_system" {
 	bindsym 1 exec --no-startup-id i3-msg exit, mode "default"
 	bindsym 2 exec --no-startup-id systemctl suspend, mode "default"
-	bindsym 3 exec --no-startup-id systemctl hibernate, mode "default"
-	bindsym 4 exec --no-startup-id systemctl reboot, mode "default"	
-	bindsym 5 exec --no-startup-id systemctl poweroff -i, mode "default"
+	bindsym 3 exec --no-startup-id systemctl reboot, mode "default"	
+	bindsym 4 exec --no-startup-id systemctl poweroff -i, mode "default"
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
 bindsym Mod4+Shift+e mode "$mode_system"
-bindsym Mod4+e exec --no-startup-id lock
+bindsym Mod4+e exec --no-startup-id i3lock -c 2d2d2d
 
 #Pulseaudio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
