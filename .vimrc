@@ -1,5 +1,3 @@
-colorscheme base16-solarized-dark
-
 syntax enable
 
 set autoindent
@@ -13,7 +11,9 @@ augroup resCur
   autocmd BufReadPost * call setpos(".", getpos("'\""))
 augroup END
 
+colorscheme base16-eighties
+
 set laststatus=2
-set ttimeoutlen=10
+set ttimeoutlen=2
 set noshowmode
-let g:airline_theme='base16'
+let g:airline_powerline_fonts = 1

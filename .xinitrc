@@ -48,12 +48,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-#twm &
-#xclock -geometry 50x50-1+1 &
-#xterm -geometry 80x50+494+51 &
-#xterm -geometry 80x20+494-0 &
-#exec xterm -geometry 80x66+0+0 -name login
-
 #monitor stuff
 internal=eDP-1
 external=HDMI-3
@@ -64,16 +58,9 @@ else
     xrandr --output $internal --auto --primary --set "scaling mode" "Full aspect"
 fi
 
-udiskie &
-compton -b &
 sh ~/.fehbg &
-xss-lock -- lock &
+udiskie &
 urxvtd -q -o -f &
-
-#window manager chooser
-session=${1:-i3}
-
-case $session in
-	i3	) exec i3;;
-	*) exec $1;;
-esac
+compton -b &
+xss-lock -- i3lock -c 2d2d2d &
+exec i3
