@@ -24,7 +24,7 @@
     format = "<b>%s</b>\n%b"
     
     # Sort messages by urgency.
-    sort = yes
+    sort = no
     
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -78,7 +78,7 @@
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
     # Set to 0 to disable.
-    idle_threshold = 120
+    idle_threshold = 0
     
     # Which monitor should the notifications be displayed on.
     monitor = 0
@@ -139,7 +139,7 @@
     dmenu = /usr/bin/dmenu -p dunst:
     
     # Browser for opening urls in context menu.
-    browser = /usr/bin/chromium -new-tab
+    browser = /usr/bin/firefox -new-tab
 
     # Align icons left/right/off
     icon_position = left
@@ -175,18 +175,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#99cc99"	
-    foreground = "#e8e6df"
-    timeout = 10
+    background = "#282828"	
+    foreground = "#83a598"
+    timeout = 0
 
 [urgency_normal]
-    background = "#6699cc"
-    foreground = "#e8e6df"
-    timeout = 10
+    background = "#282828"
+    foreground = "#83a598"
+    timeout = 0
 
 [urgency_critical]
-    background = "#f2777a"
-    foreground = "#e8e6df"
+    background = "#282828"
+    foreground = "#fb4934"
     timeout = 0
 
 # Every section that isn't one of the above is interpreted as a rules to
