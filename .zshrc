@@ -24,3 +24,6 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 #rm confirm
 alias rm="rm -i"
+
+#gruvbox colors
+source "/usr/share/vim/vimfiles/gruvbox_256palette.sh"

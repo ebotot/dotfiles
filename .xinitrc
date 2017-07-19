@@ -50,7 +50,7 @@ fi
 
 #monitor stuff
 internal=eDP-1
-external=HDMI-3
+external=VGA-1
 
 if xrandr | grep "$external connected"; then
     xrandr --output $external --auto --primary --output $internal --off
@@ -58,9 +58,13 @@ else
     xrandr --output $internal --auto --primary --set "scaling mode" "Full aspect"
 fi
 
+export EDITOR=vim
+export BROWSER=firefox
+export VDPAU_DRIVER=va_gl
+
 sh ~/.fehbg &
 udiskie &
 urxvtd -q -o -f &
-compton -b &
-xss-lock -- i3lock -c 2d2d2d &
+xss-lock -- lock &
+
 exec i3
