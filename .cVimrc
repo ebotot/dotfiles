@@ -1,9 +1,16 @@
 " Settings
+set autoupdategist
+
 set smoothscroll
 set noautofocus
-set scalehints
+set noscalehints
+set nolinkanimation
+set completeonopen
 
-let searchlimit = 30
+set sortlinkhints
+
+let searchlimit = 10
+let hintcharacters = "asdghjkl"
 
 let completionengines = ["duckduckgo"]
 let defaultengine = "duckduckgo"
