@@ -3,6 +3,7 @@ set autoupdategist
 
 set smoothscroll
 set noautofocus
+set scalehints
 set linkanimation
 set completeonopen
 
