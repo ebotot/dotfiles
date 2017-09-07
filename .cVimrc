@@ -9,7 +9,7 @@ set completeonopen
 set sortlinkhints
 
 let searchlimit = 10
-let hintcharacters = "asdghjkl"
+let hintcharacters = "qwertyuiopasdfghjklzxcvbnm"
 
 let completionengines = ["duckduckgo"]
 let defaultengine = "duckduckgo"
