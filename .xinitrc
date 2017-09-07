@@ -59,7 +59,7 @@ else
 fi
 
 export EDITOR=vim
-export BROWSER=firefox
+export BROWSER=chromium
 export VDPAU_DRIVER=va_gl
 
 sh ~/.fehbg &
