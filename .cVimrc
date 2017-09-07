@@ -1,11 +1,9 @@
 " Settings
-set nohud
 set smoothscroll
 set noautofocus
-
-set nonumerichints
-set notypelinkhints
+set scalehints
 
 let searchlimit = 30
-let scrollstep = 70
-let barposition = "bottom"
+
+let completionengines = ["duckduckgo"]
+let defaultengine = "duckduckgo"
