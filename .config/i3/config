@@ -169,14 +169,14 @@ client.background       $grey
 set $mode_system (1) Logout, (2) Suspend, (3) Reboot, (4) Shutdown
 mode "$mode_system" {
 	bindsym 1 exec --no-startup-id i3-msg exit, mode "default"
-	bindsym 2 exec --no-startup-id systemctl suspend, mode "default"
+	bindsym 2 exec --no-startup-id lock && systemctl suspend, mode "default"
 	bindsym 3 exec --no-startup-id systemctl reboot, mode "default"	
 	bindsym 4 exec --no-startup-id systemctl poweroff -i, mode "default"
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
 bindsym Mod4+Shift+e mode "$mode_system"
-bindsym Mod4+Shift+l exec --no-startup-id lock 
+bindsym Mod4+Shift+l exec --no-startup-id lock
 
 #Pulseaudio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
@@ -212,11 +212,13 @@ bindsym $mod+z workspace back_and_forth
 bindsym $mod+Shift+z move container to workspace back_and_forth
 
 #display options
+set $internal eDP-1
+set $external DP-1-1
 set $mode_display (1) Monitor, (2) Laptop, (3) Extended
 mode "$mode_display" {
-	bindsym 1 exec --no-startup-id xrandr --output HDMI-3 --auto --primary --output eDP-1 --off && sh ~/.fehbg
-	bindsym 2 exec --no-startup-id xrandr --output eDP-1 --auto --primary --set "scaling mode" "Full aspect" --output HDMI-3 --off && sh ~/.fehbg
-	bindsym 3 exec --no-startup-id xrandr --output HDMI-3 --auto --primary --output eDP-1 --auto --right-of HDMI-3 && sh ~/.fehbg
+	bindsym 1 exec --no-startup-id xrandr --output $external --auto --primary --output $internal --off && sh ~/.fehbg
+	bindsym 2 exec --no-startup-id xrandr --output $internal --auto --primary --set "scaling mode" "Full aspect" --output $external --off && sh ~/.fehbg
+	bindsym 3 exec --no-startup-id xrandr --output $external --auto --primary --output $internal --auto --right-of $external --set "scaling mode" "Full aspect" && sh ~/.fehbg
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
