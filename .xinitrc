@@ -33,7 +33,7 @@ fi
 #monitor stuff
 
 internal=eDP-1
-external=DP-1-3
+external=DP-1-1
 
 if xrandr | grep "$external connected"; then
     xrandr --output $external --auto --primary --output $internal --off
