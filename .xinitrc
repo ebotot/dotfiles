@@ -44,7 +44,7 @@ fi
 #environmental variables
 
 export EDITOR=vim
-export BROWSER=chromium
+export BROWSER=firefox
 export VDPAU_DRIVER=va_gl
 
 #startup programs
