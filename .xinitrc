@@ -44,7 +44,7 @@ fi
 #environmental variables
 
 export EDITOR=vim
-export BROWSER=firefox
+export BROWSER=chromium
 export VDPAU_DRIVER=va_gl
 
 #startup programs
@@ -52,6 +52,5 @@ export VDPAU_DRIVER=va_gl
 sh ~/.fehbg &
 udiskie &
 urxvtd -q -o -f &
-xautolock -time 10 -locker lock &
 
 exec i3
