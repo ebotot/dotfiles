@@ -196,7 +196,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 #Border style
-new_window pixel
+new_window pixel 5
 hide_edge_borders smart
 
 #floaters
