@@ -1,16 +1,16 @@
 """
 """default editing settings
 """
+set nocompatible		"vim defaults instead of vi
+filetype plugin indent on	"filetype-specific settings
+syntax on			"syntax highlighting
+set autoindent			"current indent for new lines
+set smarttab			"backspace removes 'shiftwidth' spaces
+set wildmenu			"better tab completion
+set wildmode=longest:full,full	"wildmenu behavior
 
-"mouse support
-set mouse=a
-
-"syntax highlighting
-filetype plugin on
-syntax on
-
-"autoindent next line
-set autoindent
+set mouse=a			"enables mouse support
+set nu				"line numbers
 
 "remember cursor position
 augroup resCur
@@ -18,7 +18,13 @@ augroup resCur
   autocmd BufReadPost * call setpos(".", getpos("'\""))
 augroup END
 
-"split stuff
+"traditional copypaste
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <C-r><C-o>+
+
+"split commands
 set splitbelow
 set splitright
 nnoremap <C-J> <C-W><C-J>
@@ -32,43 +38,66 @@ set foldlevel=99
 "nnoremap <space> za
 
 """
+"""plugins
+"""
+"automatic install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" Specify a directory for plugins
+call plug#begin('~/.vim/plug')
+
+Plug 'vim-airline/vim-airline'
+Plug 'morhetz/gruvbox'
+"Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
+"automatically executes 'filetype plugin indent on' 
+"and 'syntax enable'
+call plug#end()
+
+"""
 """theming
 """
 
-"enable line numbers
-set nu
+"airline fixes
+set ttimeoutlen=10
+set noshowmode
 
-"gruvbox configuration
+"gruvbox colors
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark="soft"
 colorscheme gruvbox
-set background=dark
+let g:airline_theme='gruvbox'
 
-"airline configuration
-set laststatus=2
-set showtabline=2
-set ttimeoutlen=2
-set noshowmode
-let g:airline_powerline_fonts=1
+"powerline fonts
+let g:airline_powerline_fonts = 1
+
+"smart tab line
+let g:airline#extensions#tabline#enabled = 1
+
+"airline truncation
+let g:airline#extensions#default#section_truncate_width = {
+      \ 'b': 79,
+      \ 'x': 60,
+      \ 'y': 88,
+      \ 'z': 45,
+      \ 'warning': 80,
+      \ 'error': 80,
+      \ }
 
 """
 """filespecific
 """
 
-"""python
+"LaTeX spell checking
+autocmd FileType tex setlocal spell spelllang=en_us
 
+"vimtex viewer
+"let g:vimtex_view_method = 'zathura'
 
-"""full stack
-
-"LOOK INTO INDENTATION
-"""PLUGINS TO INSTALL
-"nerdtree
-"syntastic
-"fugitive
-"bufexplorer or minibufexpl?
-"project?
-
-"""code specific
-"jedi
-"jad
-"omnicppcomplete
+"latex pdf viewer
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'zathura'
