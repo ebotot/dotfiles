@@ -36,20 +36,20 @@ Xft.antialias: 1
 Xft.rgba: rgb
 
 !!!urxvt settings
-URxvt.font: xft:Inconsolata,xft:Source Code Pro
+URxvt.font: xft:Inconsolata:size=14
 URxvt.scrollBar: false
 URxvt.depth: 32
-URxvt.perl-ext-common: default,keyboard-select,url-select
-!url
-URxvt.matcher.button: 1
-URxvt.url-select.launcher: /usr/bin/xdg-open
-URxvt.url-select.underline: true
-URxvt.keysym.C-u: perl:url-select:select_next
-!keyboard-select
-URxvt.keysym.C-v: perl:keyboard-select:activate
+URxvt.perl-ext:
+URxvt.perl-ext-common:
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
 
 !!!rofi
-rofi.modi: window,drun,ssh
+rofi.modi: drun
 rofi.color-enabled: true
 !                  bg       border   separator
 rofi.color-window: #282828, #282828, #a89984
@@ -59,10 +59,9 @@ rofi.color-active: #d79921, #282828, #d79921, #fabd2f, #282828
 rofi.color-urgent: #cc241d, #282828, #cc241d, #fb4934, #282828 
 ! seperator
 rofi.separator-style: solid
-
 ! font
 rofi.font: Source Sans Pro 12
 ! monitor rofi appears on
 rofi.monitor: -1
 ! mode sidebar selector
-rofi.sidebar-mode: true
+rofi.sidebar-mode: false
